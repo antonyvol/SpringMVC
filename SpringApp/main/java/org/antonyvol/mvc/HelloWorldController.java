@@ -11,13 +11,19 @@ import org.springframework.web.portlet.mvc.ParameterizableViewController;
  */
 
 @Controller
-@RequestMapping("/helloworld")
+@RequestMapping("/helloworld.html")
 public class HelloWorldController extends ParameterizableViewController {
+    private String viewName = "/helloworld/helloworld";
+
     // mapping on the according "path" on the mvc-config.xml
+    public HelloWorldController() {
+        super.setViewName(viewName);
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     public String printHello(ModelMap model) {
         model.addAttribute("msg", "this is hello from the controller!");
         // return the path to the according jsp
-        return "/helloworld/helloworld";
+        return viewName;
     }
 }
